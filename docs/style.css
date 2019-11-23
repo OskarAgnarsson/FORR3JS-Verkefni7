@@ -8,11 +8,56 @@ body {
 }
 
 #container {
-	max-width: 45em;
+	max-width: 65em;
 	margin: 0 auto;
+	background-color: #a12d1b;
 }
 
 #search {
 	padding: 1em;
 	background-color: #a12d1b;
+}
+
+.conRow {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.con {
+	margin-top: -4%;
+	margin-bottom: -6%;
+	justify-content: center;
+}
+
+.con img {
+	display: block;
+	margin: 0 auto;
+	border: solid #5c1307 0.25em;
+	z-index: -1;
+}
+
+.labels {
+	display: block;
+	visibility: hidden;
+	margin: 0 auto;
+	text-align: center;
+	vertical-align: text-top;
+	position: relative;
+	bottom: 60%;
+	max-width: 50%;
+}
+
+.labels a {
+	text-decoration: none;
+	padding: 0.3em;
+	color: #fff6a8;
+	border: solid rgba(255,246,168,0.6) 0.1em;
+}
+
+.labels a:hover {
+	background-color: rgba(255,246,168,0.2);
+}
+
+.labels a:active {
+	background-color: rgba(255,246,168,0.4);
 }
