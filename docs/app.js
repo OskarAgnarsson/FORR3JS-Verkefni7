@@ -66,11 +66,11 @@ function searchCons() {
                 }
             }
             else {
-                if (dateFrom.value.length == 0 || dateTo.value.length == 0) {
+                if (dateFrom.value.length == 0 && dateTo.value.length == 0) {
                     con.element.style = "display: inline-block";
                 }
                 else {
-                    if (!(moment(con.concert.dateOfShow) >= moment(dateFrom.value) && moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
+                    if (!(moment(con.concert.dateOfShow) >= moment(dateFrom.value) || moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
                         con.element.style = "display: none";
                     }
                     else {
@@ -89,11 +89,11 @@ function searchCons() {
                 }
             }
             else {
-                if (dateFrom.value.length == 0 || dateTo.value.length == 0) {
+                if (dateFrom.value.length == 0 && dateTo.value.length == 0) {
                     con.element.style = "display: inline-block";
                 }
                 else {
-                    if (!(moment(con.concert.dateOfShow) >= moment(dateFrom.value) && moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
+                    if (!(moment(con.concert.dateOfShow) >= moment(dateFrom.value) || moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
                         con.element.style = "display: none";
                     }
                     else {
@@ -112,11 +112,11 @@ function searchCons() {
                 }
             }
             else {
-                if (dateFrom.value.length == 0 || dateTo.value.length == 0) {
+                if (dateFrom.value.length == 0 && dateTo.value.length == 0) {
                     con.element.style = "display: inline-block";
                 }
                 else {
-                    if (!(moment(con.concert.dateOfShow) >= moment(dateFrom.value) && moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
+                    if (!(moment(con.concert.dateOfShow) >= moment(dateFrom.value) || moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
                         con.element.style = "display: none";
                     }
                     else {
