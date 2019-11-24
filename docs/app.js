@@ -11,41 +11,34 @@ async function getConcerts() {
     const data = await response.json();
     let rowCount = Math.ceil(data.results.length / 3);
     conList.style = `display:grid; grid-template-rows: repeat(${rowCount}, 1fr);`;
-    let counter = 0;
-    for (let i = 0; i < rowCount; i++) {
-        const listRow = [];
-        for (let i = 0; i < 3; i++) {
-            if (counter < data.results.length) {
-                const con = document.createElement("div");
-                con.classList.add("con");
+    for (let i = 0; i < data.results.length; i++) {
+        const con = document.createElement("div");
+        con.classList.add("con");
 
-                const conImg = document.createElement("img");
-                conImg.src = data.results[counter].imageSource;
+        const conImg = document.createElement("img");
+        conImg.src = data.results[i].imageSource;
 
-                const labels = document.createElement("div");
-                labels.classList.add("labels");
+        const labels = document.createElement("div");
+        labels.classList.add("labels");
 
-                const title = document.createElement("h4");
-                title.textContent = data.results[counter].eventDateName;
+        const title = document.createElement("h4");
+        title.textContent = data.results[i].eventDateName;
 
-                const date = document.createElement("p");
-                date.textContent = data.results[counter].dateOfShow;
+        const date = document.createElement("p");
+        date.textContent = data.results[i].dateOfShow;
 
-                const link = document.createElement("a");
-                link.href = "index.html";
-                link.textContent = "SEE MORE";
+        const link = document.createElement("a");
+        link.href = "index.html";
+        link.textContent = "SEE MORE";
 
-                labels.append(title,date,link);
-                con.append(conImg,labels);
-                conImg.addEventListener("mouseover", function() {labels.style="visibility: visible;"; conImg.style="filter: brightness(30%);"}, false);
-                conImg.addEventListener("mouseout", function() {labels.style="visibility: hidden;"; conImg.style="filter: brightness(100%);"}, false);
-                labels.addEventListener("mouseover", function() {labels.style="visibility: visible;"; conImg.style="filter: brightness(30%);"}, false);
-                labels.addEventListener("mouseout", function() {labels.style="visibility: hidden;"; conImg.style="filter: brightness(100%);"}, false);
-                conList.append(con);
-                concerts.push({"element":con,"concert":data.results[counter]});
-            } 
-            counter++;
-        }
+        labels.append(title,date,link);
+        con.append(conImg,labels);
+        conImg.addEventListener("mouseover", function() {labels.style="visibility: visible;"; conImg.style="filter: brightness(30%);"}, false);
+        conImg.addEventListener("mouseout", function() {labels.style="visibility: hidden;"; conImg.style="filter: brightness(100%);"}, false);
+        labels.addEventListener("mouseover", function() {labels.style="visibility: visible;"; conImg.style="filter: brightness(30%);"}, false);
+        labels.addEventListener("mouseout", function() {labels.style="visibility: hidden;"; conImg.style="filter: brightness(100%);"}, false);
+        conList.append(con);
+        concerts.push({"element":con,"concert":data.results[i]});
     }
 }
 getConcerts();
