@@ -1,7 +1,9 @@
-
+moment.locale("is");
 const search = document.getElementById("search");
 const conList = document.getElementById("list");
 const searchBar = document.getElementById("searchBar");
+const dateFrom = document.getElementById("dateSearch").getElementsByTagName("input")[0];
+const dateTo = document.getElementById("dateSearch").getElementsByTagName("input")[1];
 
 const concerts = [];
 const rows = [];
@@ -25,7 +27,7 @@ async function getConcerts() {
         title.textContent = data.results[i].eventDateName;
 
         const date = document.createElement("p");
-        date.textContent = data.results[i].dateOfShow;
+        date.textContent = moment(data.results[i].dateOfShow).format("ll").substr(0,7).toUpperCase();
 
         const link = document.createElement("a");
         link.href = "index.html";
@@ -55,8 +57,6 @@ function getSort() {
     }
 }
 
-console.log(getSort());
-
 function searchCons() {
     if (getSort() == "eventName") {
         concerts.forEach(function(con) {
@@ -66,7 +66,17 @@ function searchCons() {
                 }
             }
             else {
-                con.element.style = "display: inline-block";
+                if (dateFrom.value.length == 0 || dateTo.value.length == 0) {
+                    con.element.style = "display: inline-block";
+                }
+                else {
+                    if (!(moment(con.concert.dateOfShow) >= moment(dateFrom.value) && moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
+                        con.element.style = "display: none";
+                    }
+                    else {
+                        con.element.style = "display: inline-block";
+                    }
+                }
             }
         }
         )
@@ -79,7 +89,17 @@ function searchCons() {
                 }
             }
             else {
-                con.element.style = "display: inline-block";
+                if (dateFrom.value.length == 0 || dateTo.value.length == 0) {
+                    con.element.style = "display: inline-block";
+                }
+                else {
+                    if (!(moment(con.concert.dateOfShow) >= moment(dateFrom.value) && moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
+                        con.element.style = "display: none";
+                    }
+                    else {
+                        con.element.style = "display: inline-block";
+                    }
+                }
             }
         }
         )
@@ -92,11 +112,22 @@ function searchCons() {
                 }
             }
             else {
-                con.element.style = "display: inline-block";
+                if (dateFrom.value.length == 0 || dateTo.value.length == 0) {
+                    con.element.style = "display: inline-block";
+                }
+                else {
+                    if (!(moment(con.concert.dateOfShow) >= moment(dateFrom.value) && moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
+                        con.element.style = "display: none";
+                    }
+                    else {
+                        con.element.style = "display: inline-block";
+                    }
+                }
             }
         }
         )
     }
 }
-
+dateFrom.addEventListener("input",searchCons);
+dateTo.addEventListener("input",searchCons);
 searchBar.addEventListener("input",searchCons);
