@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="">
 	<title>Verkefni 7</title>
@@ -9,10 +10,22 @@
 <body>
 	<div id="container">
 		<header id="search">
-			<!-- Create searchbar with JS -->
+			<div>
+				<input type="search" name="searchbar" id="searchBar" placeholder="Search">
+			</div>
+			<div id="searchOptions">
+				Search By
+				<div id="searchBy">
+					Event Name:
+					<input type="radio" name="option" value="eventName" checked>
+					Event Hall:
+					<input type="radio" name="option" value="eventHall">
+					Organizer:
+					<input type="radio" name="option" value="organizer">
+				</div>
+			</div>
 		</header>
 		<div id="list">
-			<!-- Create Rows of concerts with JS -->
 		</div>
 	</div>
 	<script type="text/javascript" src="app.js"></script>

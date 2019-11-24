@@ -5,6 +5,7 @@
 body {
 	background-color: #ffdf61;
 	color: #fff6a8;
+	font-family: "Helevetica",Helvetica,Arial,sans-serif;
 }
 
 #container {
@@ -15,17 +16,41 @@ body {
 
 #search {
 	padding: 1em;
-	background-color: #a12d1b;
+	background-color: #801e0f;
 }
 
-.conRow {
+#searchBar {
+	width: 50%;
+	height: 10%;
+	border-radius: 0.5em;
+	background-color: #fff6a8;
+}
+
+#searchOptions {
 	display: grid;
+	background-color: #691609;
+	margin-top: 1%;
+	padding: 0.7em;
+}
+
+#searchByText {
+	text-align: right;
+}
+
+#searchBy {
+	margin-top: 2.25%;
+	background-color: #4d1006;
+	padding: 0.5em;
+	width: 40%;
+}
+
+#list {
 	grid-template-columns: repeat(3, 1fr);
+	padding: 0.5em;
 }
 
 .con {
-	margin-top: -4%;
-	margin-bottom: -6%;
+	display: inline-block;
 	justify-content: center;
 }
 
@@ -33,7 +58,6 @@ body {
 	display: block;
 	margin: 0 auto;
 	border: solid #5c1307 0.25em;
-	z-index: -1;
 }
 
 .labels {
@@ -43,8 +67,8 @@ body {
 	text-align: center;
 	vertical-align: text-top;
 	position: relative;
-	bottom: 60%;
-	max-width: 50%;
+	bottom: 50%;
+	max-width: 60%;
 }
 
 .labels a {
@@ -60,4 +84,76 @@ body {
 
 .labels a:active {
 	background-color: rgba(255,246,168,0.4);
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1039px) {
+	
+	#search {
+		font-size: 75%;
+	}
+
+	.con img {
+		width: 85%;
+	}
+
+	.labels {
+		font-size: 65%;
+	}
+}
+
+@media only screen and (min-width: 541px) and (max-width: 767px) {
+
+	#search {
+		font-size: 50%;
+	}
+
+	#searchBy {
+		width: 50%;
+	}
+
+	.con img {
+		width: 85%;
+	}
+
+	.labels {
+		font-size: 50%;
+	}
+}
+
+@media only screen and (min-width: 321px) and (max-width: 540px) {
+	
+	#search {
+		font-size: 40%;
+	}
+
+	#searchBy {
+		width: 65%;
+	}
+
+	.con img {
+		width: 85%;
+	}
+
+	.labels {
+		font-size: 40%;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	
+	#search {
+		font-size: 30%;
+	}
+
+	#searchBy {
+		width: 65%;
+	}
+
+	.con img {
+		width: 85%;
+	}
+
+	.labels {
+		font-size: 30%;
+	}
 }
