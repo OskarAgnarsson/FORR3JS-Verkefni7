@@ -7,7 +7,7 @@ const concerts = [];
 const rows = [];
 
 async function getConcerts() {
-    const response = await fetch("http://apis.is/concerts");
+    const response = await fetch("https://apis.is/concerts");
     const data = await response.json();
     let rowCount = Math.ceil(data.results.length / 3);
     conList.style = `display:grid; grid-template-rows: repeat(${rowCount}, 1fr);`;
