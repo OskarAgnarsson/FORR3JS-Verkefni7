@@ -6,6 +6,11 @@ const dates = document.getElementById("dateSearch");
 
 const concerts = [];
 
+flatpickr(dates,{
+    mode: "range",
+    onChange: searchCons
+});
+
 async function getConcerts() {
     const response = await fetch("https://apis.is/concerts");//Nær í gögn frá apis
     const data = await response.json();
@@ -17,6 +22,7 @@ async function getConcerts() {
 
         const conImg = document.createElement("img");
         conImg.src = data.results[i].imageSource;//Setur inn mynd
+        conImg.classList.add("conImg");
 
         const labels = document.createElement("div");
         labels.classList.add("labels");
@@ -33,10 +39,9 @@ async function getConcerts() {
 
         labels.append(title,date,link);
         con.append(conImg,labels);
-        conImg.addEventListener("mouseover", function() {labels.style="visibility: visible;"; conImg.style="filter: brightness(30%);"}, false);//Óþarfi að hafa svona marga event listenera en það virkar
-        conImg.addEventListener("mouseout", function() {labels.style="visibility: hidden;"; conImg.style="filter: brightness(100%);"}, false);
-        labels.addEventListener("mouseover", function() {labels.style="visibility: visible;"; conImg.style="filter: brightness(30%);"}, false);
-        labels.addEventListener("mouseout", function() {labels.style="visibility: hidden;"; conImg.style="filter: brightness(100%);"}, false);
+        labels.addEventListener("mouseover", function() { conImg.style="filter: brightness(30%);"}, false);
+        conImg.addEventListener("mouseout",function() { conImg.style="filter: brightness(100%)"}, false);
+        conImg.addEventListener("mouseover",function() { conImg.style="filter: brightness(30%)"}, false);
         conList.append(con);
         concerts.push({"element":con,"concert":data.results[i]});//Listi af tónleikum með element saman til að geta leitað í gegn eftir einhverjum skilyrðum
     }
@@ -56,6 +61,17 @@ function getSort() {
 }
 
 function searchCons() {
+    let dateList = dates.value.split(" to ");//Splittar inputtinu frá flatpickr calendar sem skilar "dagsetning to dagsetning"
+    let dateFrom = "";
+    let dateTo = "";
+    if (dateList.length >= 1) {
+        dateFrom = dateList[0];
+    }
+    if (dateList.length == 2) {
+        dateTo = dateList[1];
+    }
+
+
     if (getSort() == "eventName") {//Tékkar hvaða search option er settur upp og leitar eftir honum
         concerts.forEach(function(con) {
             if (!con.concert.eventDateName.toLowerCase().includes(searchBar.value.toLowerCase())) {
@@ -64,17 +80,17 @@ function searchCons() {
                 }
             }
             else {
-                if (dateFrom.value.length == 0 && dateTo.value.length == 0) {//Ef það er engin date sett og textinn passar þá sýnir það tónleikana
+                if (dateFrom.length == 0 && dateTo.length == 0) {//Ef það er engin date sett og textinn passar þá sýnir það tónleikana
                     con.element.style = "display: inline-block";
                 }
                 else {//Þetta fer í gegnum date ef eitthvað date er sett upp
-                    if (dateFrom.value.length > 0 && dateTo.value.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom.value) && moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
+                    if (dateFrom.length > 0 && dateTo.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom) && moment(con.concert.dateOfShow) <= moment(dateTo))) {
                         con.element.style = "display: none";
                     }
-                    else if (dateFrom.value.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom.value)) {
+                    else if (dateFrom.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom)) {
                         con.element.style = "display: none";
                     }
-                    else if (dateTo.value.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo.value)) {
+                    else if (dateTo.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo)) {
                         con.element.style = "display: none";
                     }
                     else {//Ef þetta passar sýnir það tónleikana
@@ -93,17 +109,17 @@ function searchCons() {
                 }
             }
             else {
-                if (dateFrom.value.length == 0 && dateTo.value.length == 0) {
+                if (dateFrom.length == 0 && dateTo.length == 0) {
                     con.element.style = "display: inline-block";
                 }
                 else {
-                    if (dateFrom.value.length > 0 && dateTo.value.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom.value) && moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
+                    if (dateFrom.length > 0 && dateTo.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom) && moment(con.concert.dateOfShow) <= moment(dateTo))) {
                         con.element.style = "display: none";
                     }
-                    else if (dateFrom.value.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom.value)) {
+                    else if (dateFrom.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom)) {
                         con.element.style = "display: none";
                     }
-                    else if (dateTo.value.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo.value)) {
+                    else if (dateTo.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo)) {
                         con.element.style = "display: none";
                     }
                     else {
@@ -122,17 +138,17 @@ function searchCons() {
                 }
             }
             else {
-                if (dateFrom.value.length == 0 && dateTo.value.length == 0) {
+                if (dateFrom.length == 0 && dateTo.length == 0) {
                     con.element.style = "display: inline-block";
                 }
                 else {
-                    if (dateFrom.value.length > 0 && dateTo.value.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom.value) && moment(con.concert.dateOfShow) <= moment(dateTo.value))) {
+                    if (dateFrom.length > 0 && dateTo.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom) && moment(con.concert.dateOfShow) <= moment(dateTo))) {
                         con.element.style = "display: none";
                     }
-                    else if (dateFrom.value.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom.value)) {
+                    else if (dateFrom.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom)) {
                         con.element.style = "display: none";
                     }
-                    else if (dateTo.value.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo.value)) {
+                    else if (dateTo.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo)) {
                         con.element.style = "display: none";
                     }
                     else {
@@ -145,6 +161,4 @@ function searchCons() {
     }
 }
 //Event listenerar til að vita hvort input updatear
-dateFrom.addEventListener("input",searchCons);
-dateTo.addEventListener("input",searchCons);
 searchBar.addEventListener("input",searchCons);
