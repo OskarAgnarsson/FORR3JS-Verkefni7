@@ -65,10 +65,11 @@ function searchCons() {
     let dateFrom = "";
     let dateTo = "";
     if (dateList.length >= 1) {
-        dateFrom = dateList[0];
+        dateFrom = dateList[0] + " 00:00:00";
+
     }
     if (dateList.length == 2) {
-        dateTo = dateList[1];
+        dateTo = dateList[1] + " 23:59:59";
     }
 
 
