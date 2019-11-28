@@ -71,7 +71,6 @@ function searchCons() {
     }
     if (dateList.length == 2) {
         dateTo = dateList[1] + " 23:59:59";
-        console.log(dateTo);
     }
 
 
