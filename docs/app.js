@@ -6,7 +6,7 @@ const dates = document.getElementById("dateSearch");
 
 const concerts = [];
 
-flatpickr(dates,{
+flatpickr(dates,{//breytir dates í flatpickr calendar
     mode: "range",
     onChange: searchCons
 });
