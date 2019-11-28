@@ -32,6 +32,7 @@ async function getConcerts() {
         title.textContent = data.results[i].eventDateName;
 
         const date = document.createElement("p");
+        //format("ll") skilar dagsetningu formattaða t.d. svona: (28. Nóv 2019), substr sker út árið
         date.textContent = moment(data.results[i].dateOfShow).format("ll").substr(0,7).toUpperCase();//Setur inn dagsetningu á íslensku
 
         const link = document.createElement("a");//Link sem er bara þarna
@@ -77,7 +78,7 @@ function searchCons() {
     if (getSort() == "eventName") {//Tékkar hvaða search option er settur upp og leitar eftir honum
         concerts.forEach(function(con) {
             if (!con.concert.eventDateName.toLowerCase().includes(searchBar.value.toLowerCase())) {
-                if (searchBar.value.replace(/\s/g,"").length > 0) {//Ef search er ekki bara whitespace og það passar ekki þá fær það display: none
+                if (searchBar.value.replace(/\s/g,"").length > 0) {//Ef search passar ekki þá fær það display: none
                     con.element.style = "display: none";
                 }
             }
