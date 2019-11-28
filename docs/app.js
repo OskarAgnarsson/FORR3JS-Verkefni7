@@ -8,7 +8,8 @@ const concerts = [];
 
 flatpickr(dates,{//breytir dates í flatpickr calendar
     mode: "range",
-    onChange: searchCons
+    onChange: searchCons,
+    dateFormat: "d-m-Y"
 });
 
 async function getConcerts() {
@@ -70,6 +71,7 @@ function searchCons() {
     }
     if (dateList.length == 2) {
         dateTo = dateList[1] + " 23:59:59";
+        console.log(dateTo);
     }
 
 
@@ -85,13 +87,13 @@ function searchCons() {
                     con.element.style = "display: inline-block";
                 }
                 else {//Þetta fer í gegnum date ef eitthvað date er sett upp
-                    if (dateFrom.length > 0 && dateTo.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom) && moment(con.concert.dateOfShow) <= moment(dateTo))) {
+                    if (dateFrom.length > 0 && dateTo.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom, "DD-MM-YYYY HH:mm:ss") && moment(con.concert.dateOfShow) <= moment(dateTo, "DD-MM-YYYY HH:mm:ss"))) {
                         con.element.style = "display: none";
                     }
-                    else if (dateFrom.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom)) {
+                    else if (dateFrom.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom, "DD-MM-YYYY HH:mm:ss")) {
                         con.element.style = "display: none";
                     }
-                    else if (dateTo.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo)) {
+                    else if (dateTo.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo, "DD-MM-YYYY HH:mm:ss")) {
                         con.element.style = "display: none";
                     }
                     else {//Ef þetta passar sýnir það tónleikana
@@ -114,13 +116,13 @@ function searchCons() {
                     con.element.style = "display: inline-block";
                 }
                 else {
-                    if (dateFrom.length > 0 && dateTo.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom) && moment(con.concert.dateOfShow) <= moment(dateTo))) {
+                    if (dateFrom.length > 0 && dateTo.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom, "DD-MM-YYYY HH:mm:ss") && moment(con.concert.dateOfShow) <= moment(dateTo, "DD-MM-YYYY HH:mm:ss"))) {
                         con.element.style = "display: none";
                     }
-                    else if (dateFrom.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom)) {
+                    else if (dateFrom.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom, "DD-MM-YYYY HH:mm:ss")) {
                         con.element.style = "display: none";
                     }
-                    else if (dateTo.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo)) {
+                    else if (dateTo.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo, "DD-MM-YYYY HH:mm:ss")) {
                         con.element.style = "display: none";
                     }
                     else {
@@ -143,13 +145,13 @@ function searchCons() {
                     con.element.style = "display: inline-block";
                 }
                 else {
-                    if (dateFrom.length > 0 && dateTo.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom) && moment(con.concert.dateOfShow) <= moment(dateTo))) {
+                    if (dateFrom.length > 0 && dateTo.length > 0 && !(moment(con.concert.dateOfShow) >= moment(dateFrom, "DD-MM-YYYY HH:mm:ss") && moment(con.concert.dateOfShow) <= moment(dateTo, "DD-MM-YYYY HH:mm:ss"))) {
                         con.element.style = "display: none";
                     }
-                    else if (dateFrom.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom)) {
+                    else if (dateFrom.length > 0 && moment(con.concert.dateOfShow) < moment(dateFrom, "DD-MM-YYYY HH:mm:ss")) {
                         con.element.style = "display: none";
                     }
-                    else if (dateTo.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo)) {
+                    else if (dateTo.length > 0 && moment(con.concert.dateOfShow) > moment(dateTo, "DD-MM-YYYY HH:mm:ss")) {
                         con.element.style = "display: none";
                     }
                     else {
